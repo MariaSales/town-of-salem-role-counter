@@ -1,9 +1,16 @@
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+import RolesContainer from './roles-container';
 
 class App extends Component {
   render() {
-    return <p>Hello Salemo!</p>;
+    return (
+      <div>
+        <p>Hello Salemo!</p>
+        <RolesContainer />
+      </div>
+    );
   }
 }
 

@@ -57,6 +57,10 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 34);
 	
+	var _rolesContainer = __webpack_require__(/*! ./roles-container */ 172);
+	
+	var _rolesContainer2 = _interopRequireDefault(_rolesContainer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -78,9 +82,14 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'p',
+	        'div',
 	        null,
-	        'Hello Salemo!'
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Hello Salemo!'
+	        ),
+	        _react2.default.createElement(_rolesContainer2.default, null)
 	      );
 	    }
 	  }]);
@@ -21969,6 +21978,277 @@
 	
 	module.exports = ReactDOMNullInputValuePropHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 3)))
+
+/***/ },
+/* 172 */
+/*!************************************!*\
+  !*** ./src/app/roles-container.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _constants = __webpack_require__(/*! ./constants */ 173);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var RolesContainer = function (_Component) {
+	  _inherits(RolesContainer, _Component);
+	
+	  function RolesContainer() {
+	    _classCallCheck(this, RolesContainer);
+	
+	    return _possibleConstructorReturn(this, (RolesContainer.__proto__ || Object.getPrototypeOf(RolesContainer)).apply(this, arguments));
+	  }
+	
+	  _createClass(RolesContainer, [{
+	    key: 'renderRoles',
+	    value: function renderRoles(roles) {
+	      return roles.map(function (role, i) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: i },
+	          role.name
+	        );
+	      });
+	    }
+	  }, {
+	    key: 'renderAlignments',
+	    value: function renderAlignments(alignments) {
+	      var _this2 = this;
+	
+	      return Object.keys(alignments).map(function (alignment, i) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: i },
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'alignment' },
+	            alignment
+	          ),
+	          _this2.renderRoles(alignments[alignment])
+	        );
+	      });
+	    }
+	  }, {
+	    key: 'renderCategories',
+	    value: function renderCategories(salemRoles) {
+	      var _this3 = this;
+	
+	      return Object.keys(salemRoles).map(function (category, i) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: i },
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'category' },
+	            category
+	          ),
+	          _this3.renderAlignments(salemRoles[category])
+	        );
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var roles = _constants.ROLES;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'roles-container' },
+	        this.renderCategories(roles)
+	      );
+	    }
+	  }]);
+	
+	  return RolesContainer;
+	}(_react.Component);
+	
+	exports.default = RolesContainer;
+
+/***/ },
+/* 173 */
+/*!******************************!*\
+  !*** ./src/app/constants.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	// ROLE ALIGNMENTS
+	
+	// TOWN
+	var TOWN = exports.TOWN = 'TOWN';
+	// Town Investigative
+	var TOWN_INVESTIGATIVE = exports.TOWN_INVESTIGATIVE = 'TOWN_INVESTIGATIVE';
+	var INVESTIGATOR = { name: 'Investigator' };
+	var LOOKOUT = { name: 'Lookout' };
+	var SHERIFF = { name: 'Sheriff' };
+	var SPY = { name: 'Spy' };
+	// Town Killing
+	var TOWN_KILLING = exports.TOWN_KILLING = 'TOWN_KILLING';
+	var JAILOR = { name: 'Jailor', unique: true };
+	var VAMPIRE_HUNTER = { name: 'Vampire Hunter' };
+	var VETERAN = { name: 'Veteran', unique: true };
+	var VIGILANTE = { name: 'Vigilante' };
+	// Town Protective
+	var TOWN_PROTECTIVE = exports.TOWN_PROTECTIVE = 'TOWN_PROTECTIVE';
+	var BODYGUARD = exports.BODYGUARD = { name: 'Bodyguard' };
+	var DOCTOR = exports.DOCTOR = { name: 'Doctor' };
+	// Town Support
+	var TOWN_SUPPORT = exports.TOWN_SUPPORT = 'TOWN_SUPPORT';
+	var ESCORT = { name: 'Escort' };
+	var MAYOR = { name: 'Mayor', unique: true };
+	var MEDIUM = { name: 'Medium' };
+	var RETRIBUTIONIST = { name: 'Retributionist', unique: true };
+	var TRANSPORTER = { name: 'Transporter' };
+	
+	// MAFIA
+	var MAFIA = exports.MAFIA = 'MAFIA';
+	// Mafia Deception
+	var MAFIA_DECEPTION = exports.MAFIA_DECEPTION = 'MAFIA_DECEPTION';
+	var DIGUISER = { name: 'Disguiser' };
+	var FORGER = { name: 'Forger' };
+	var FRAMER = { name: 'Framer' };
+	var JANITOR = { name: 'Janitor' };
+	// Mafia Killing
+	var MAFIA_KILLING = exports.MAFIA_KILLING = 'MAFIA_KILLING';
+	var GODFATHER = { name: 'Godfather', unique: true };
+	var MAFIOSO = { name: 'Mafioso', unique: true };
+	// Mafia Support
+	var MAFIA_SUPPORT = exports.MAFIA_SUPPORT = 'MAFIA_SUPPORT';
+	var BLACKMAILER = { name: 'Blackmailer' };
+	var CONSIGLIERE = { name: 'Consigliere' };
+	var CONSORT = { name: 'Consort' };
+	
+	// NEUTRAL
+	var NEUTRAL = exports.NEUTRAL = 'NEUTRAL';
+	// Neutral Benign
+	var NEUTRAL_BENIGN = exports.NEUTRAL_BENIGN = 'NEUTRAL_BENIGN';
+	var AMNESIAC = { name: 'Amnesiac' };
+	var SURVIVOR = { name: 'Survivor' };
+	// Neutral Chaos
+	var NEUTRAL_CHAOS = exports.NEUTRAL_CHAOS = 'NEUTRAL_CHAOS';
+	var VAMPIRE = { name: 'Vampire' };
+	// Neutral Evil
+	var NEUTRAL_EVIL = exports.NEUTRAL_EVIL = 'NEUTRAL_EVIL';
+	var EXECUTIONER = { name: 'Executioner' };
+	var JESTER = { name: 'Jester' };
+	var WITCH = { name: 'Witch' };
+	// Neutral Killing
+	var NEUTRAL_KILLING = exports.NEUTRAL_KILLING = 'NEUTRAL_KILLING';
+	var ARSONIST = { name: 'Arsonist' };
+	var SERIAL_KILLER = { name: 'Serial Killer' };
+	var WEREWOLF = { name: 'Werewolf' };
+	
+	var ROLES = exports.ROLES = {
+	  TOWN: {
+	    TOWN_INVESTIGATIVE: [INVESTIGATOR, LOOKOUT, SHERIFF, SPY],
+	    TOWN_KILLING: [JAILOR, VAMPIRE_HUNTER, VETERAN, VIGILANTE],
+	    TOWN_PROTECTIVE: [BODYGUARD, DOCTOR],
+	    TOWN_SUPPORT: [ESCORT, MAYOR, MEDIUM, RETRIBUTIONIST, TRANSPORTER]
+	  },
+	  MAFIA: {
+	    MAFIA_DECEPTION: [DIGUISER, FORGER, FRAMER, JANITOR],
+	    MAFIA_KILLING: [GODFATHER, MAFIOSO],
+	    MAFIA_SUPPORT: [BLACKMAILER, CONSIGLIERE, CONSORT]
+	  },
+	  NEUTRAL: {
+	    NEUTRAL_BENIGN: [AMNESIAC, SURVIVOR],
+	    NEUTRAL_CHAOS: [VAMPIRE],
+	    NEUTRAL_EVIL: [EXECUTIONER, JESTER, WITCH],
+	    NEUTRAL_KILLING: [ARSONIST, SERIAL_KILLER, WEREWOLF]
+	  }
+	};
+	
+	/*  
+	// ROLE CATEGORIES
+	export const TOWN = 'TOWN';
+	export const MAFIA = 'MAFIA';
+	export const NEUTRAL = 'NEUTRAL';
+
+	// ROLE ALIGNMENTS
+	// Town
+	export const TOWN_INVESTIGATIVE = 'TOWN_INVESTIGATIVE';
+	export const TOWN_KILLING = 'TOWN_KILLING';
+	export const TOWN_PROTECTIVE = 'TOWN_PROTECTIVE';
+	export const TOWN_SUPPORT = 'TOWN_SUPPORT';
+	// Mafia
+	export const MAFIA_DECEPTION = 'MAFIA_DECEPTION';
+	export const MAFIA_KILLING = 'MAFIA_KILLING';
+	export const MAFIA_SUPPORT = 'MAFIA_SUPPORT';
+	// Neutral
+	export const NEUTRAL_BENIGN = 'NEUTRAL_BENIGN';
+	export const NEUTRAL_CHAOS = 'NEUTRAL_CHAOS';
+	export const NEUTRAL_EVIL = 'NEUTRAL_EVIL';
+	export const NEUTRAL_KILLING = 'NEUTRAL_KILLING';
+
+	// ROLE NAMES
+	// Town Investigative
+	export const INVESTIGATOR = 'INVESTIGATOR';
+	export const LOOKOUT = 'LOOKOUT';
+	export const SHERIFF = 'SHERIFF';
+	export const SPY = 'SPY';
+	// Town Killing
+	export const JAILOR = 'JAILOR';
+	export const VAMPIRE_HUNTER = 'VAMPIRE_HUNTER';
+	export const VETERAN = 'VETERAN';
+	export const VIGILANTE = 'VIGILANTE';
+	// Town Protective
+	export const BODYGUARD = 'BODYGUARD';
+	export const DOCTOR = 'DOCTOR';
+	// Town Support
+	export const ESCORT = 'ESCORT';
+	export const MAYOR = 'MAYOR';
+	export const MEDIUM = 'MEDIUM';
+	export const RETRIBUTIONIST = 'RETRIBUTIONIST';
+	export const TRANSPORTER = 'TRANSPORTER';
+	// Mafia Deception
+	export const DISGUISER = 'DISGUISER';
+	export const FORGER = 'FORGER';
+	export const FRAMER = 'FRAMER';
+	export const JANITOR = 'JANITOR';
+	// Mafia Killing
+	export const GODFATHER = 'GODFATHER';
+	export const MAFIOSO = 'MAFIOSO';
+	// Mafia Support
+	export const BLACKMAILER = 'BLACKMAILER';
+	export const CONSIGLIERE = 'CONSIGLIERE';
+	export const CONSORT = 'CONSORT';
+	// Neutral Benign
+	export const AMNESIAC = 'AMNESIAC';
+	export const SURVIVOR = 'SURVIVOR';
+	// Neutral Chaos
+	export const VAMPIRE = 'VAMPIRE';
+	// Neutral Evil
+	export const EXECUTIONER = 'EXECUTIONER';
+	export const JESTER = 'JESTER';
+	export const WITCH = 'WITCH';
+	// Neutral Killing
+	export const ARSONIST = 'ARSONIST';
+	export const SERIAL_KILLER = 'SERIAL_KILLER';
+	export const WEREWOLF = 'WEREWOLF'
+
+	*/
 
 /***/ }
 /******/ ]);
