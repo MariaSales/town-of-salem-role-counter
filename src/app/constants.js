@@ -84,6 +84,12 @@ export const ROLES = {
   }
 };
 
+// Certainty
+const CLAIMED = 'Claimed';
+const INVESTIGATED = 'Investigated';
+const CONFIRMED = 'Confimed'
+export const CERTAINTY = [CLAIMED, INVESTIGATED, CONFIRMED];
+
 
 /*  
 // ROLE CATEGORIES
